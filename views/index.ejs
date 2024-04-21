@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Jokes For All</title>
+</head>
+
+<body>
+    <h1>Jokes For All</h1>
+
+    <form action="/byCategory" id="form" class="form" method="post">
+        <select name="category" class="form-select">
+            <option value="Programming">Programming</option>
+            <option value="Miscellaneous">Misc</option>
+            <option value="Dark">Dark</option>
+            <option value="Pun">Pun</option>
+            <option value="Spooky">Spooky</option>
+            <option value="Christmas">Christmas</option>
+        </select>
+        <button type="submit" class="form-submit">Get Joke</button>
+    </form>
+    <h2>Don't you care about any category?</h2>
+    <form action="/any" class="form" method="get">
+        <button type="submit" class="form-submit">Get a random joke</button>
+    </form>
+
+    <section id="cards" class="cards">
+        <% if (locals.data) {%>
+            <article class="card-item">
+                <h3 class="card-joke">
+                    <%= data.joke %>
+                </h3>
+                <div class="card-info">
+                    <span class="card-category">
+                        <%= data.category %>
+                    </span>
+                    <span class="card-participants">
+                        <%= data.participants %>
+                            <span class="card-number"></span>
+                    </span>
+                </div>
+            </article>
+            <% } %>
+                <% if (locals.error) {%>
+                    <div id="tag-error" class="tag-error">
+                        <%= error %>
+                    </div>
+                <% } %>
+    </section>
+</body>
+
+</html>
